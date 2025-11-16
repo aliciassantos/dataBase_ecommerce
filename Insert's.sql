@@ -1,28 +1,17 @@
 use ecommercelilienana;
 
-
-SELECT * FROM PESSOA;#
-
+SELECT * FROM CARRINHO; #
 SELECT * FROM CATEGORIA;#
-SELECT * FROM PRODUTO;#
-
-
-
-select*from departamento;
+SELECT * FROM CLIENTE; #
+SELECT * FROM COMPRA;#
+select * from departamento; #
+SELECT * FROM FORNECEDOR; #
+SELECT * FROM FORNECIDO; #
 select * from funcionario;#
-
-
-
-
-select * from notafiscal;
-select * FrOm ItEm;
-
-
-
-#INSERÇÃO DE EMPRESAS
-
-
-
+SELECT * FROM ITEM;#
+SELECT* FROM NOTAFISCAL;
+SELECT * FROM PESSOA;#
+SELECT * FROM PRODUTO;#
 
 
 
@@ -57,49 +46,56 @@ INSERT INTO PESSOA (sexo, Nome, Telefone, Email, CPF, CEP, RUA, CIDADE, NUMERO, 
 ('M', 'Bento Ferreira', '(47) 90987-6543', 'bento.ferreira@email.com', '131.313.131-13', '88010-266', 'Rua X', 'Florianópolis', 131, 'SC', 'Casa 9'),
 ('F', 'Cecília Guedes', '(47) 98765-4321', 'cecilia.guedes@email.com', '000.444.555-66', '88020-277', 'Rua Y', 'Florianópolis', 444, 'SC', 'Apto 8D');
 
+#inserção de pessoas que são clientes
+INSERT INTO PESSOA (sexo, Nome, Telefone, Email, CPF, CEP, RUA, CIDADE, NUMERO, Estado, Referencia) VALUES
+('F', 'Denise Ferreira', '(11) 95555-1234', 'denise.cliente@email.com', '000.300.300-30', '03000-300', 'Av. das Flores', 'São Paulo', 300, 'SP', 'Bloco A, Apto 10'),
+('M', 'Elias Nogueira', '(21) 94444-5678', 'elias.cliente@email.com', '000.310.310-31', '23000-310', 'Rua do Porto', 'Rio de Janeiro', 310, 'RJ', 'Casa 2'),
+('F', 'Fátima Quirino', '(31) 93333-9012', 'fatima.cliente@email.com', '000.320.320-32', '33000-320', 'Travessa da Paz', 'Contagem', 320, 'MG', 'Perto da Escola'),
+('M', 'Geraldo Ramos', '(41) 92222-3456', 'geraldo.cliente@email.com', '000.330.330-33', '83000-330', 'Alameda dos Pinhais', 'Curitiba', 330, 'PR', 'Portão Laranja'),
+('F', 'Hilda Menezes', '(71) 91111-7890', 'hilda.menezes@email.com', '000.340.340-34', '43000-340', 'Rua dos Coqueiros', 'Salvador', 340, 'BA', 'Vizinho ao Mercado');
 
 
-INSERT INTO DEPARTAMENTO (idDpto, nomeDpto) VALUES 
-(1, 'Recursos Humanos (RH)'), 
-(2, 'Financeiro'), 
-(3, 'Logística e Operações'), 
-(4, 'Marketing e Vendas'), 
-(5, 'Tecnologia e Desenvolvimento (TI)'), 
-(6, 'Atendimento ao Cliente (SAC/CX)');
+#inserção de departamentos
+INSERT INTO DEPARTAMENTO (nomeDpto) VALUES 
+('Suporte ao Cliente'),
+('Monitoramento de Compras e Logística'),
+('Controle de Segurança da Informação'), 
+('Desenvolvimento e Atualizações'),
+('Financeiro');
 
-
+#inserção de funcionarios
 INSERT INTO FUNCIONARIO (CPFfuncionario, idDpto, NumeroConta, AgenciaConta) VALUES
 ('000.131.141-15', 2, '30000-05', '0500-5'),
-('000.111.222-33', 5, '30000-01', '0100-5'),
+('000.111.222-33', 4, '30000-01', '0100-5'),
 ('111.111.111-11', 1, '55555-55', '0001-0'),
 ('333.333.333-33', 3, '888888-88', '0201-2'),
 ('444.444.444-44', 4, '999999-99', '0001-8'),
 
-('555.555.555-55', 2, '12345678-9', '1234'),
+('555.555.555-55', 5, '12345678-9', '1234'),
 ('666.666.666-66', 1, '99995678-9', '1999'),
 ('777.777.777-77', 2,  '2225378-2', '1999'),
-('888.888.888-88', 5, '99995678-9', '1999'),
-('999.999.999-99', 3, '93988678-0', '1999'),
+('888.888.888-88', 2, '99995678-9', '1999'),
+('999.999.999-99', 5, '93988678-0', '1999'),
 ('101.101.101-10', 4, '92388678-0', '1889'),
 
 ('141.414.141-14', 1, '22321678-0', '1829'),
-('151.515.151-15', 5, '22321678-0', '1976'),
+('151.515.151-15', 2, '22321678-0', '1976'),
 ('161.616.161-61', 4, '22321678-0', '1829'),
-('171.171.717-17', 2, '232321678-0', '1829'),
+('171.171.717-17', 5, '232321678-0', '1829'),
 ('181.818.181-18', 3, '200021678-0', '1219'),
 ('191.919.191-19', 3, '22321678-0', '1829'),
 
 ('000.281.291-30', 1, '40000-10', '1000-5'),
 ('000.101.111-12', 4, '30000-04', '0400-5'),
-('000.161.171-18', 5, '40000-06', '0600-5'),
-('222.222.222-22', 2, '66666-66', '0002-2'),
+('000.161.171-18', 3, '40000-06', '0600-5'),
+('222.222.222-22', 5, '66666-66', '0002-2'),
 ('000.221.231-24', 4, '40000-08', '0800-5'),
 
 ('000.777.888-99', 1, '30000-03', '0300-5'),    
 ('000.191.201-21', 3, '40000-07', '0700-5'), 
-('000.251.261-27', 2, '40000-09', '0900-5'),
+('000.251.261-27', 5, '40000-09', '0900-5'),
 ('121.121.121-21', 4, '94221678-0', '1999'),
-('131.313.131-13', 5, '93321678-0', '1829'),
+('131.313.131-13', 1, '93321678-0', '1829'),
 ('000.444.555-66', 3, '30000-02', '0200-5');
 
 
@@ -108,7 +104,7 @@ INSERT INTO FUNCIONARIO (CPFfuncionario, idDpto, NumeroConta, AgenciaConta) VALU
 
 
 
-
+#inserção de categorias
 INSERT INTO CATEGORIA(nomeCategoria) VALUES 
 ('Eletrônicos'),
 ('Eletrodomésticos'),
@@ -121,7 +117,7 @@ INSERT INTO CATEGORIA(nomeCategoria) VALUES
 ('Cuidados Pessoais e Higiene'),
 ('Ferramentas e Construção');
 
-#geral
+##inserção de produtos
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (25, 5999.00, 'Smartphone Ultra X (12GB RAM, 108MP)', 1),
 (15, 3499.00, 'Smart TV LED 55" (4K Ultra HD)', 1),
@@ -134,7 +130,6 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (60, 250.00, 'Acessório para Streaming 4K', 1),
 (20, 1500.00, 'Projetor Portátil Mini (100 polegadas)', 1);
 
-#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (12, 4199.00, 'Geladeira Frost Free Inox 450L (Inverter)', 2),
 (18, 1890.00, 'Máquina de Lavar 15kg (12 programas)', 2),
@@ -147,7 +142,6 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (45, 189.90, 'Ventilador de Coluna Silencioso (6 pás)', 2),
 (50, 220.00, 'Ferro de Passar a Vapor Profissional', 2);
 
-#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (80, 599.00, 'Conjunto de Panelas Antiaderente (5 peças)', 3),
 (95, 150.00, 'Faca Chef Santoku 8" (Aço Inox Forjado)', 3),
@@ -160,7 +154,6 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (110, 35.00, 'Ralador de Queijo Rotativo (Lâminas Intercambiáveis)', 3),
 (75, 59.90, 'Forma de Silicone Reutilizável para Air Fryer', 3);
 
-#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (300, 49.90, 'Livro: A Biblioteca da Meia-Noite (Ficção)', 4),
 (250, 39.90, 'Livro: O Poder do Hábito (Best-seller)', 4),
@@ -256,4 +249,165 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (120, 45.00, 'Martelo Unha Forjado (Cabo Emborrachado)', 10),
 (15, 299.00, 'Tinta Acrílica Premium Branca (18 Litros)', 10),
 (35, 850.00, 'Escada Telescópica de Alumínio (3,8 Metros)', 10);
+
+#inserção de fornecedor
+INSERT INTO FORNECEDOR (CNPJ, nome, Email, CEP, RUA, CIDADE, NUMERO, Estado, Referencia) VALUES
+('06.789.012/0001-06', 'Fitness Wear Brasil', 'marombar@fwear.com.br', '50000-006', 'Av. Boa Viagem', 'Recife', 150, 'PE', 'Vestuário esportivo'),
+('01.234.567/0001-01', 'Tech Solutions Ltda.', 'technology@techsolutions.com.br', '01000-001', 'Av. Paulista', 'São Paulo', 1200, 'SP', 'Setor de TI'),
+('02.345.678/0001-02', 'Constrular Alfa S.A.', 'vendas@embalagensalfa.com', '20000-002', 'Rua da Alfândega', 'Rio de Janeiro', 50, 'RJ', 'Material de estoque'),
+('03.456.789/0001-03', 'Make Prime', 'comercial@graficaprime.com.br', '30100-003', 'Rua dos Guajajaras', 'Belo Horizonte', 15, 'MG', 'Impressão e publicidade'),
+('04.567.890/0001-04', 'Papelaria Saraiva', 'financeiro@lograpida.com', '40200-004', 'Rua da Bahia', 'Salvador', 320, 'BA', 'Transporte e entrega'),
+('05.678.901/0001-05', 'Móveis Conforto', 'vendas@moveisconforto.com', '60300-005', 'Rua Monsenhor Tabosa', 'Fortaleza', 88, 'CE', 'Mobiliário de escritório');
+
+#inserção de fornecido
+INSERT INTO FORNECIDO (qtdForn, dataEntrega, CNPJ, IdProduto) VALUES
+(50, '2025-11-01', '01.234.567/0001-01', 1),
+(30, '2025-10-25', '01.234.567/0001-01', 36),
+(100, '2025-11-15', '02.345.678/0001-02', 41),
+(150, '2025-11-05', '03.456.789/0001-03', 31),
+(999, '2025-11-10', '04.567.890/0001-04', 40),
+(10, '2025-10-30', '05.678.901/0001-05', 31),
+(80, '2025-11-02', '06.789.012/0001-06', 26),
+(70, '2025-11-12', '06.789.012/0001-06', 21),
+(10, '2025-11-16', '01.234.567/0001-01', 6),
+(50, '2025-10-28', '02.345.678/0001-02', 49),
+(100, '2025-11-03', '03.456.789/0001-03', 33), 
+(120, '2025-11-07', '04.567.890/0001-04', 34), 
+(5, '2025-11-14', '05.678.901/0001-05', 39),
+(30, '2025-11-20', '02.345.678/0001-02', 43),
+(20, '2025-11-04', '01.234.567/0001-01', 7), 
+(90, '2025-11-08', '06.789.012/0001-06', 28), 
+(80, '2025-11-11', '02.345.678/0001-02', 46), 
+(75, '2025-11-18', '03.456.789/0001-03', 38), 
+(110, '2025-11-22', '04.567.890/0001-04', 32), 
+(70, '2025-10-27', '05.678.901/0001-05', 35);
+
+#inserção de cliente
+INSERT INTO CLIENTE (cpfCliente, classeCliente) VALUES
+('000.300.300-30', 'VIP+'),  
+('000.310.310-31', 'Básico'),  
+('000.320.320-32', 'VIP'),      
+('000.191.201-21', 'Básico'), 
+('000.251.261-27', 'VIP+'),    
+('121.121.121-21', 'VIP'),    
+('131.313.131-13', 'Básico'),  
+('000.444.555-66', 'VIP+'),   
+('000.131.141-15', 'VIP'),
+('000.111.222-33', 'VIP+');
+
+
+#Inserção de CARRINHO
+INSERT INTO CARRINHO (CPFcliente, quantProduto) VALUES
+('000.300.300-30', 5),
+ ('000.310.310-31', 6),
+ ('000.320.320-32', 8), 
+ ( '000.191.201-21', 5),
+ ('000.251.261-27', 6), 
+ ( '121.121.121-21', 6), 
+ ('131.313.131-13', 7), 
+ ('000.444.555-66', 9), 
+ ('000.131.141-15', 7), 
+ ('000.111.222-33', 10);
+ 
+#inserção de itens
+INSERT INTO ITEM (idProduto, idCarrinho) VALUES (1, 1),
+ (12, 1), 
+ (61, 1), 
+ (63, 1),
+ (74, 1), 
+ (52, 2), 
+ (55, 2),
+ (84, 2),
+ (86, 2),
+ (37, 2),
+ (91, 3), 
+ (94, 3), 
+ (22, 3), 
+ (26, 3),
+ (13,3),
+ (21, 4),
+ (28, 4),
+ (14, 4),
+ (18, 4), 
+ (34, 4),
+ (41, 5), 
+ (46, 5),
+ (83, 5),
+ (3, 5),
+ (5, 5), 
+ (64, 6), 
+ (68, 6), 
+ (36, 6), 
+ (76, 6), 
+ (79, 6),
+ (6, 7), 
+ (71, 7),
+ (72, 7),
+ (93, 7),
+ (14, 8),
+ (29, 8), 
+ (30, 8), 
+ (82, 8), 
+ (85, 8), 
+ (10, 9), 
+ (31, 9), 
+ (38, 9), 
+ (57, 9), 
+ (60, 9),
+ (50, 10), 
+ (45, 10),
+ (77, 10), 
+ (62, 10), 
+ (67, 10);
+ 
+ #inserção de compras
+INSERT INTO COMPRA (idCompra, idCarrinho, precoTotal, Status, dataCompra) VALUES
+(101, 1, 1500.00, 'Processamento', '2025-11-01'),
+(102, 2, 890.50, 'Enviado', '2025-11-02'),
+(103, 3, 3200.00, 'Entregue', '2025-11-03'),
+(104, 4, 450.99, 'Enviado', '2025-11-04'),
+(105, 5, 5100.25, 'Processamento', '2025-11-05'),
+(106, 6, 1250.70, 'Entregue', '2025-11-06'),
+(107, 7, 205.10, 'Enviado', '2025-11-07'),
+(108, 8, 7500.00, 'Processamento', '2025-11-08'),
+(109, 9, 980.00, 'Entregue', '2025-11-09'),
+(110, 10, 11200.00, 'Enviado', '2025-11-10');
+
+#inserção de NF
+INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao, valorTotalCompra, idCompra) VALUES ('001', 101000001, 'Emitida', 'Cartão de Crédito', '2025-11-01', 1500.00, 101), 
+('001', 101000002, 'Emitida', 'Pix', '2025-11-02', 890.50, 102),
+ ('001', 101000003, 'Emitida', 'Boleto', '2025-11-03', 3200.00, 103),
+ ('001', 101000004, 'Emitida', 'Cartão de Débito', '2025-11-04', 450.99, 104), 
+ ('001', 101000005, 'Emitida', 'Cartão de Crédito', '2025-11-05', 5100.25, 105), 
+ ('001', 101000006, 'Emitida', 'Pix', '2025-11-06', 1250.70, 106), 
+ ('001', 101000007, 'Emitida', 'Boleto', '2025-11-07', 205.10, 107), 
+ ('001', 101000008, 'Emitida', 'Cartão de Crédito', '2025-11-08', 7500.00, 108),
+ ('001', 101000009, 'Emitida', 'Cartão de Débito', '2025-11-09', 980.00, 109), 
+ ('001', 101000010, 'Emitida', 'Pix', '2025-11-10', 11200.00, 110);
+ 
+#saber quais funcionarios tambem sao clientes
+select e.cpffuncionario as CPFPessoa 
+from funcionario e
+inner join cliente c on (c.cpfcliente = e.cpffuncionario);
+
+#atualizar os gerentes dos departamentos
+update departamento set CPFGerente = '000.281.291-30' where idDpto = 1;
+update departamento set CPFGerente = '000.131.141-15' where idDpto = 2;
+update departamento set CPFGerente = '000.161.171-18' where idDpto = 3;
+update departamento set CPFGerente = '161.616.161-61' where idDpto = 4;
+update departamento set CPFGerente = '000.251.261-27' where idDpto = 5;
+
+#verifica quais funcionarios sao gerentes de um departamento
+select f.CPFfuncionario, f.idDpto
+from departamento d
+inner join funcionario f on (d.cpfgerente = f.cpfFuncionario);
+
+#atualizar os gerentes dos funcionarios
+update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 1) where idDpto = 1;
+update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 2) where idDpto = 2;
+update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 3) where idDpto = 3;
+update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 4) where idDpto = 4;
+update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 5) where idDpto = 5;
+
+
 

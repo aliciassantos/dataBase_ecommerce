@@ -100,7 +100,7 @@ CREATE TABLE COMPRA (
 	idCompra INT AUTO_INCREMENT,
 	idCarrinho INT,
 	precoTotal NUMERIC(10,2) CHECK (precoTotal >= 0),
-	`status` VARCHAR(20) CHECK (`status` IN ('Entregue', 'Enviado',' Processamento')),
+	`status` VARCHAR(20) CHECK (`status` IN ('Entregue', 'Enviado','Processamento')),
 	dataCompra DATE,
     
     PRIMARY KEY(idCompra),
@@ -109,7 +109,7 @@ CREATE TABLE COMPRA (
 );
 
 CREATE TABLE Item(
-	idItem INT NOT NULL,
+	idItem INT AUTO_INCREMENT NOT NULL,
 	idProduto INT NOT NULL,
 	idCarrinho INT,
     
