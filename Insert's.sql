@@ -1,38 +1,127 @@
 use ecommercelilienana;
 
-select * from empresa;
-select * from funcionario;
+
+SELECT * FROM PESSOA;#
+
+SELECT * FROM CATEGORIA;#
+SELECT * FROM PRODUTO;#
+
+
+
+select*from departamento;
+select * from funcionario;#
+
+
+
+
 select * from notafiscal;
 select * FrOm ItEm;
-SELECT * FROM PESSOA;
-SELECT * FROM PRODUTO;
-SELECT * FROM CATEGORIA;
+
+
 
 #INSERÇÃO DE EMPRESAS
-INSERT INTO EMPRESA(CNPJ,Nome)VALUES('48.642.635/0003-54','Mercado Preso');
-INSERT INTO EMPRESA(CNPJ,Nome)VALUES('48.332.635/0003-54','Amazon Decepticon');
-INSERT INTO EMPRESA(CNPJ,Nome)VALUES('48.622.635/0002-54','Brasileiras');
-INSERT INTO EMPRESA(CNPJ,Nome)VALUES('38.332.635/0123-54','Jacaranda');
-INSERT INTO EMPRESA(CNPJ,Nome)VALUES('58.622.635/0006-74','Mercado Agro');
+
+
+
+
+
 
 #INSERÇÃO DE PESSOAS
-INSERT INTO PESSOA(CPF,NOME,SEXO,TELEFONE,EMAIL,CEP,RUA,CIDADE,NUMERO,ESTADO) VALUES ('111.111.111-11','João Felipe','M','(86)98834-9472','popis@gmail.com','64028-123','Rua do joao','Teresina','1311','PI');
-INSERT INTO PESSOA(CPF,NOME,SEXO,TELEFONE,EMAIL,CEP,RUA,CIDADE,NUMERO,ESTADO,REFERENCIA) VALUES ('222.222.222-22','Alícia','F','(89)94002-8922','lili@gmail.com','64025-080','Rua da lili','Peritoró','2408','MA','Do lado do cemitério');
-INSERT INTO PESSOA(CPF,NOME,SEXO,TELEFONE,EMAIL,CEP,RUA,CIDADE,NUMERO,ESTADO,REFERENCIA) VALUES ('333.333.333-33','Geovanna Bruno','F','(89)99402-5680','nana@outlook.com','64089-000','Rua da nana','Canto do abacaxi','1003','PI','Na frente do bar/budega');
-INSERT INTO PESSOA(CPF,NOME,SEXO,TELEFONE,EMAIL,CEP,RUA,CIDADE,NUMERO,ESTADO,REFERENCIA) VALUES ('444.444.444-44','Victor Emannoel','M','(99)99994-5780','vivi@protoMail.com','69696-969','Rua do vivi','Barro mole','1309','AC','Do lado do fóssil');
-INSERT INTO PESSOA(CPF,NOME,SEXO,TELEFONE,EMAIL,CEP,RUA,CIDADE,NUMERO,ESTADO,REFERENCIA) VALUES ('555.555.555-55','Guilherme Guigo','M','(13)96924-1945','guiguinho@Hotmail.com','01939-450','Rua Parafusos','Baixos','1509','RR','No fundo do mercado Útil');
+INSERT INTO PESSOA (sexo, Nome, Telefone, Email, CPF, CEP, RUA, CIDADE, NUMERO, Estado, Referencia) VALUES
+('M', 'Lucas Rocha', '(11) 98765-4321', 'lucas.rocha@email.com', '000.131.141-15', '01010-001', 'Rua A', 'São Paulo', 101, 'SP', 'Apto 1A'),
+('F', 'Juliana Alves', '(11) 97777-1111', 'juliana.alves@email.com', '000.111.222-33', '02020-002', 'Rua B', 'São Paulo', 202, 'SP', 'Casa Fundos'),
+('M', 'Marcos Pereira', '(21) 96543-2109', 'marcos.pereira@email.com', '111.111.111-11', '21010-011', 'Av. Central', 'Rio de Janeiro', 111, 'RJ', 'Bloco C'),
+('M', 'Bruno Costa', '(21) 95555-3333', 'bruno.costa@email.com', '333.333.333-33', '22020-022', 'Rua da Praia', 'Rio de Janeiro', 333, 'RJ', 'Sala 2B'),
+('F', 'Ana Cristina', '(31) 94444-4444', 'ana.cristina@email.com', '444.444.444-44', '30010-033', 'Rua C', 'Belo Horizonte', 444, 'MG', 'Referência Portaria'),
+('F', 'Carla Mendes', '(31) 93333-5555', 'carla.mendes@email.com', '555.555.555-55', '31020-044', 'Rua D', 'Belo Horizonte', 555, 'MG', 'Apartamento 5'),
+('M', 'Eduardo Lima', '(41) 92222-6666', 'eduardo.lima@email.com', '666.666.666-66', '80010-055', 'Rua E', 'Curitiba', 666, 'PR', 'Próximo ao Parque'),
+('F', 'Fernanda Silva', '(41) 91111-7777', 'fernanda.silva@email.com', '777.777.777-77', '81020-066', 'Rua F', 'Curitiba', 777, 'PR', 'Referência Escola'),
+('M', 'Gabriel Souza', '(51) 90000-8888', 'gabriel.souza@email.com', '888.888.888-88', '90010-077', 'Av. Principal', 'Porto Alegre', 888, 'RS', 'Casa 1'),
+('F', 'Heloísa Neves', '(51) 99876-5432', 'heloisa.neves@email.com', '999.999.999-99', '91020-088', 'Rua G', 'Porto Alegre', 999, 'RS', 'Apto 12B'),
+('M', 'Igor Santos', '(61) 97654-3210', 'igor.santos@email.com', '101.101.101-10', '70010-099', 'Rua H', 'Brasília', 101, 'DF', 'Referência Banco'),
+('F', 'Laura Gomes', '(61) 96543-2109', 'laura.gomes@email.com', '141.414.141-14', '71020-111', 'Rua I', 'Brasília', 141, 'DF', 'Casa 5'),
+('M', 'Mauro Cordeiro', '(71) 95432-1098', 'mauro.cordeiro@email.com', '151.515.151-15', '40010-122', 'Rua J', 'Salvador', 151, 'BA', 'Condomínio X'),
+('F', 'Nicole Viana', '(71) 94321-0987', 'nicole.viana@email.com', '161.616.161-61', '41020-133', 'Rua K', 'Salvador', 161, 'BA', 'Apto 3C'),
+('M', 'Otávio Martins', '(81) 93210-9876', 'otavio.martins@email.com', '171.171.717-17', '50010-144', 'Rua L', 'Recife', 171, 'PE', 'Próximo à Praça'),
+('F', 'Paula Oliveira', '(81) 92109-8765', 'paula.oliveira@email.com', '181.818.181-18', '51020-155', 'Rua M', 'Recife', 181, 'PE', 'Casa 7'),
+('M', 'Quirino Dantas', '(92) 91098-7654', 'quirino.dantas@email.com', '191.919.191-19', '69010-166', 'Rua N', 'Manaus', 191, 'AM', 'Referência Rio'),
+('F', 'Rebeca Dias', '(92) 90987-6543', 'rebeca.dias@email.com', '000.281.291-30', '69020-177', 'Rua O', 'Manaus', 281, 'AM', 'Bloco B'),
+('M', 'Sérgio Melo', '(85) 98765-4321', 'sergio.melo@email.com', '000.101.111-12', '60010-188', 'Rua P', 'Fortaleza', 101, 'CE', 'Apto 10'),
+('F', 'Tainá Castro', '(85) 97654-3210', 'taina.castro@email.com', '000.161.171-18', '60020-199', 'Rua Q', 'Fortaleza', 161, 'CE', 'Casa 3'),
+('M', 'Uriel Pinheiro', '(91) 96543-2109', 'uriel.pinheiro@email.com', '222.222.222-22', '66010-200', 'Rua R', 'Belém', 222, 'PA', 'Referência Mercado'),
+('F', 'Viviane Lima', '(91) 95432-1098', 'viviane.lima@email.com', '000.221.231-24', '66020-211', 'Rua S', 'Belém', 231, 'PA', 'Bloco Z'),
+('M', 'Xavier Noronha', '(16) 94321-0987', 'xavier.noronha@email.com', '000.777.888-99', '14010-222', 'Rua T', 'Ribeirão Preto', 777, 'SP', 'Apto 5A'),
+('F', 'Yara Medeiros', '(16) 93210-9876', 'yara.medeiros@email.com', '000.191.201-21', '14020-233', 'Rua U', 'Ribeirão Preto', 191, 'SP', 'Casa 2'),
+('M', 'Zeca Brito', '(19) 92109-8765', 'zeca.brito@email.com', '000.251.261-27', '13010-244', 'Rua V', 'Campinas', 251, 'SP', 'Referência Padaria'),
+('F', 'Alícia Dutra', '(19) 91098-7654', 'alicia.dutra@email.com', '121.121.121-21', '13020-255', 'Rua W', 'Campinas', 121, 'SP', 'Bloco Q'),
+('M', 'Bento Ferreira', '(47) 90987-6543', 'bento.ferreira@email.com', '131.313.131-13', '88010-266', 'Rua X', 'Florianópolis', 131, 'SC', 'Casa 9'),
+('F', 'Cecília Guedes', '(47) 98765-4321', 'cecilia.guedes@email.com', '000.444.555-66', '88020-277', 'Rua Y', 'Florianópolis', 444, 'SC', 'Apto 8D');
 
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Eletrônicos');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Eletrodomésticos');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Utensílios de Cozinha');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Livros e eBooks');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Maquiagem');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Esportes e Fitness');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Móveis e Decoração');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Informática e Acessórios');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Cuidados Pessoais e Higiene');
-INSERT INTO CATEGORIA(nomeCategoria) VALUES ('Ferramentas e Construção');
 
+
+INSERT INTO DEPARTAMENTO (idDpto, nomeDpto) VALUES 
+(1, 'Recursos Humanos (RH)'), 
+(2, 'Financeiro'), 
+(3, 'Logística e Operações'), 
+(4, 'Marketing e Vendas'), 
+(5, 'Tecnologia e Desenvolvimento (TI)'), 
+(6, 'Atendimento ao Cliente (SAC/CX)');
+
+
+INSERT INTO FUNCIONARIO (CPFfuncionario, idDpto, NumeroConta, AgenciaConta) VALUES
+('000.131.141-15', 2, '30000-05', '0500-5'),
+('000.111.222-33', 5, '30000-01', '0100-5'),
+('111.111.111-11', 1, '55555-55', '0001-0'),
+('333.333.333-33', 3, '888888-88', '0201-2'),
+('444.444.444-44', 4, '999999-99', '0001-8'),
+
+('555.555.555-55', 2, '12345678-9', '1234'),
+('666.666.666-66', 1, '99995678-9', '1999'),
+('777.777.777-77', 2,  '2225378-2', '1999'),
+('888.888.888-88', 5, '99995678-9', '1999'),
+('999.999.999-99', 3, '93988678-0', '1999'),
+('101.101.101-10', 4, '92388678-0', '1889'),
+
+('141.414.141-14', 1, '22321678-0', '1829'),
+('151.515.151-15', 5, '22321678-0', '1976'),
+('161.616.161-61', 4, '22321678-0', '1829'),
+('171.171.717-17', 2, '232321678-0', '1829'),
+('181.818.181-18', 3, '200021678-0', '1219'),
+('191.919.191-19', 3, '22321678-0', '1829'),
+
+('000.281.291-30', 1, '40000-10', '1000-5'),
+('000.101.111-12', 4, '30000-04', '0400-5'),
+('000.161.171-18', 5, '40000-06', '0600-5'),
+('222.222.222-22', 2, '66666-66', '0002-2'),
+('000.221.231-24', 4, '40000-08', '0800-5'),
+
+('000.777.888-99', 1, '30000-03', '0300-5'),    
+('000.191.201-21', 3, '40000-07', '0700-5'), 
+('000.251.261-27', 2, '40000-09', '0900-5'),
+('121.121.121-21', 4, '94221678-0', '1999'),
+('131.313.131-13', 5, '93321678-0', '1829'),
+('000.444.555-66', 3, '30000-02', '0200-5');
+
+
+
+
+
+
+
+
+INSERT INTO CATEGORIA(nomeCategoria) VALUES 
+('Eletrônicos'),
+('Eletrodomésticos'),
+('Utensílios de Cozinha'),
+('Livros e eBooks'),
+('Maquiagem'),
+('Esportes e Fitness'),
+('Móveis e Decoração'),
+('Informática e Acessórios'),
+('Cuidados Pessoais e Higiene'),
+('Ferramentas e Construção');
+
+#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (25, 5999.00, 'Smartphone Ultra X (12GB RAM, 108MP)', 1),
 (15, 3499.00, 'Smart TV LED 55" (4K Ultra HD)', 1),
@@ -45,6 +134,7 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (60, 250.00, 'Acessório para Streaming 4K', 1),
 (20, 1500.00, 'Projetor Portátil Mini (100 polegadas)', 1);
 
+#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (12, 4199.00, 'Geladeira Frost Free Inox 450L (Inverter)', 2),
 (18, 1890.00, 'Máquina de Lavar 15kg (12 programas)', 2),
@@ -57,6 +147,7 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (45, 189.90, 'Ventilador de Coluna Silencioso (6 pás)', 2),
 (50, 220.00, 'Ferro de Passar a Vapor Profissional', 2);
 
+#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (80, 599.00, 'Conjunto de Panelas Antiaderente (5 peças)', 3),
 (95, 150.00, 'Faca Chef Santoku 8" (Aço Inox Forjado)', 3),
@@ -69,6 +160,7 @@ INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUE
 (110, 35.00, 'Ralador de Queijo Rotativo (Lâminas Intercambiáveis)', 3),
 (75, 59.90, 'Forma de Silicone Reutilizável para Air Fryer', 3);
 
+#geral
 INSERT INTO PRODUTO (quantEstoque, precoProduto, descProduto, idCategoria) VALUES
 (300, 49.90, 'Livro: A Biblioteca da Meia-Noite (Ficção)', 4),
 (250, 39.90, 'Livro: O Poder do Hábito (Best-seller)', 4),
