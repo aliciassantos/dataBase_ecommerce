@@ -64,44 +64,39 @@ INSERT INTO DEPARTAMENTO (nomeDpto) VALUES
 ('Financeiro');
 
 #inserção de funcionarios
-INSERT INTO FUNCIONARIO (CPFfuncionario, idDpto, NumeroConta, AgenciaConta) VALUES
-('000.131.141-15', 2, '30000-05', '0500-5'),
-('000.111.222-33', 4, '30000-01', '0100-5'),
-('111.111.111-11', 1, '55555-55', '0001-0'),
-('333.333.333-33', 3, '888888-88', '0201-2'),
-('444.444.444-44', 4, '999999-99', '0001-8'),
+INSERT INTO FUNCIONARIO (CPFfuncionario, idDpto, NumeroConta, AgenciaConta, Salario) VALUES
+('000.131.141-15', 2, '30000-05', '0500-5', 6200.00), 
+('000.111.222-33', 4, '30000-01', '0100-5', 7800.00),
+('111.111.111-11', 1, '55555-55', '0001-0', 3200.00),
+('333.333.333-33', 3, '888888-88', '0201-2', 4500.00),
+('444.444.444-44', 4, '999999-99', '0001-8', 5100.00),
 
-('555.555.555-55', 5, '12345678-9', '1234'),
-('666.666.666-66', 1, '99995678-9', '1999'),
-('777.777.777-77', 2,  '2225378-2', '1999'),
-('888.888.888-88', 2, '99995678-9', '1999'),
-('999.999.999-99', 5, '93988678-0', '1999'),
-('101.101.101-10', 4, '92388678-0', '1889'),
+('555.555.555-55', 5, '12345678-9', '1234', 4900.00),
+('666.666.666-66', 1, '99995678-9', '1999', 2800.00),
+('777.777.777-77', 2, '2225378-2', '1999', 3000.00),
+('888.888.888-88', 2, '99995678-9', '1999', 4200.00),
+('999.999.999-99', 5, '93988678-0', '1999', 3600.00),
+('101.101.101-10', 4, '92388678-0', '1889', 6500.00),
 
-('141.414.141-14', 1, '22321678-0', '1829'),
-('151.515.151-15', 2, '22321678-0', '1976'),
-('161.616.161-61', 4, '22321678-0', '1829'),
-('171.171.717-17', 5, '232321678-0', '1829'),
-('181.818.181-18', 3, '200021678-0', '1219'),
-('191.919.191-19', 3, '22321678-0', '1829'),
+('141.414.141-14', 1, '22321678-0', '1829', 2500.00),
+('151.515.151-15', 2, '22321678-0', '1976', 3800.00),
+('161.616.161-61', 4, '22321678-0', '1829', 11500.00), 
+('171.171.717-17', 5, '232321678-0', '1829', 3800.00),
+('181.818.181-18', 3, '200021678-0', '1219', 5900.00),
+('191.919.191-19', 3, '22321678-0', '1829', 4100.00),
 
-('000.281.291-30', 1, '40000-10', '1000-5'),
-('000.101.111-12', 4, '30000-04', '0400-5'),
-('000.161.171-18', 3, '40000-06', '0600-5'),
-('222.222.222-22', 5, '66666-66', '0002-2'),
-('000.221.231-24', 4, '40000-08', '0800-5'),
+('000.281.291-30', 1, '40000-10', '1000-5', 4800.00), 
+('000.101.111-12', 4, '30000-04', '0400-5', 7200.00),
+('000.161.171-18', 3, '40000-06', '0600-5', 8100.00), 
+('222.222.222-22', 5, '66666-66', '0002-2', 5400.00),
+('000.221.231-24', 4, '40000-08', '0800-5', 5500.00),
 
-('000.777.888-99', 1, '30000-03', '0300-5'),    
-('000.191.201-21', 3, '40000-07', '0700-5'), 
-('000.251.261-27', 5, '40000-09', '0900-5'),
-('121.121.121-21', 4, '94221678-0', '1999'),
-('131.313.131-13', 1, '93321678-0', '1829'),
-('000.444.555-66', 3, '30000-02', '0200-5');
-
-
-
-
-
+('000.777.888-99', 1, '30000-03', '0300-5', 3500.00),
+('000.191.201-21', 3, '40000-07', '0700-5', 4900.00),
+('000.251.261-27', 5, '40000-09', '0900-5', 7300.00), 
+('121.121.121-21', 4, '94221678-0', '1999', 6100.00),
+('131.313.131-13', 1, '93321678-0', '1829', 3000.00),
+('000.444.555-66', 3, '30000-02', '0200-5', 5300.00);
 
 
 #inserção de categorias
@@ -295,70 +290,33 @@ INSERT INTO CLIENTE (cpfCliente, classeCliente) VALUES
 ('000.131.141-15', 'VIP'),
 ('000.111.222-33', 'VIP+');
 
-
 #Inserção de CARRINHO
 INSERT INTO CARRINHO (CPFcliente, quantProduto) VALUES
 ('000.300.300-30', 5),
- ('000.310.310-31', 6),
- ('000.320.320-32', 8), 
- ( '000.191.201-21', 5),
- ('000.251.261-27', 6), 
- ( '121.121.121-21', 6), 
- ('131.313.131-13', 7), 
- ('000.444.555-66', 9), 
- ('000.131.141-15', 7), 
- ('000.111.222-33', 10);
+('000.310.310-31', 6),
+('000.320.320-32', 8), 
+( '000.191.201-21', 5),
+('000.251.261-27', 6), 
+( '121.121.121-21', 6), 
+('131.313.131-13', 7), 
+('000.444.555-66', 9), 
+('000.131.141-15', 7), 
+('000.111.222-33', 10),
+('000.300.300-30', 4), 
+('000.310.310-31', 7), 
+('000.320.320-32', 3), 
+('000.191.201-21', 9);
  
 #inserção de itens
 INSERT INTO ITEM (idProduto, idCarrinho) VALUES (1, 1),
- (12, 1), 
- (61, 1), 
- (63, 1),
- (74, 1), 
- (52, 2), 
- (55, 2),
- (84, 2),
- (86, 2),
- (37, 2),
- (91, 3), 
- (94, 3), 
- (22, 3), 
- (26, 3),
- (13,3),
- (21, 4),
- (28, 4),
- (14, 4),
- (18, 4), 
- (34, 4),
- (41, 5), 
- (46, 5),
- (83, 5),
- (3, 5),
- (5, 5), 
- (64, 6), 
- (68, 6), 
- (36, 6), 
- (76, 6), 
- (79, 6),
- (6, 7), 
- (71, 7),
- (72, 7),
- (93, 7),
- (14, 8),
- (29, 8), 
- (30, 8), 
- (82, 8), 
- (85, 8), 
- (10, 9), 
- (31, 9), 
- (38, 9), 
- (57, 9), 
- (60, 9),
- (50, 10), 
- (45, 10),
- (77, 10), 
- (62, 10), 
- (67, 10);
+ (12, 1), (61, 1), (63, 1), (74, 1), (52, 2), (55, 2),
+ (84, 2), (86, 2), (37, 2), (91, 3), (94, 3), (22, 3), 
+ (26, 3), (13,3), (21, 4), (28, 4), (14, 4), (18, 4), 
+ (34, 4), (41, 5), (46, 5), (83, 5), (3, 5), (5, 5), 
+ (64, 6), (68, 6), (36, 6), (76, 6), (79, 6), (6, 7), 
+ (71, 7), (72, 7), (93, 7), (14, 8), (29, 8), (30, 8), 
+ (82, 8), (85, 8), (10, 9), (31, 9), (38, 9), (57, 9), 
+ (60, 9),(50, 10), (45, 10),(77, 10), (62, 10), (67, 10);
  
  #inserção de compras
 INSERT INTO COMPRA (idCompra, idCarrinho, precoTotal, Status, dataCompra) VALUES
@@ -371,9 +329,13 @@ INSERT INTO COMPRA (idCompra, idCarrinho, precoTotal, Status, dataCompra) VALUES
 (107, 7, 205.10, 'Enviado', '2025-11-07'),
 (108, 8, 7500.00, 'Processamento', '2025-11-08'),
 (109, 9, 980.00, 'Entregue', '2025-11-09'),
-(110, 10, 11200.00, 'Enviado', '2025-11-10');
+(110, 10, 11200.00, 'Enviado', '2025-11-10'),
+(111, 11, 900.00, 'Processamento', '2025-11-01'),
+(112, 12, 1800.50, 'Entregue', '2025-11-02'),
+(113, 13, 410.00, 'Enviado', '2025-11-03'),
+(114, 14, 850.99, 'Processamento', '2025-11-04');
 
-#inserção de NF
+# Inserção de NF
 INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao, valorTotalCompra, idCompra) VALUES ('001', 101000001, 'Emitida', 'Cartão de Crédito', '2025-11-01', 1500.00, 101), 
 ('001', 101000002, 'Emitida', 'Pix', '2025-11-02', 890.50, 102),
  ('001', 101000003, 'Emitida', 'Boleto', '2025-11-03', 3200.00, 103),
@@ -384,30 +346,19 @@ INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao
  ('001', 101000008, 'Emitida', 'Cartão de Crédito', '2025-11-08', 7500.00, 108),
  ('001', 101000009, 'Emitida', 'Cartão de Débito', '2025-11-09', 980.00, 109), 
  ('001', 101000010, 'Emitida', 'Pix', '2025-11-10', 11200.00, 110);
- 
-#saber quais funcionarios tambem sao clientes
-select e.cpffuncionario as CPFPessoa 
-from funcionario e
-inner join cliente c on (c.cpfcliente = e.cpffuncionario);
 
-#atualizar os gerentes dos departamentos
-update departamento set CPFGerente = '000.281.291-30' where idDpto = 1;
-update departamento set CPFGerente = '000.131.141-15' where idDpto = 2;
-update departamento set CPFGerente = '000.161.171-18' where idDpto = 3;
-update departamento set CPFGerente = '161.616.161-61' where idDpto = 4;
-update departamento set CPFGerente = '000.251.261-27' where idDpto = 5;
+# ATUALIZA OS GERENTES DOS DEPARTAMENTOS
+UPDATE DEPARTAMENTO SET CPFGerente = '000.281.291-30' WHERE idDpto = 1;
+UPDATE DEPARTAMENTO SET CPFGerente = '000.131.141-15' WHERE idDpto = 2;
+UPDATE DEPARTAMENTO SET CPFGerente = '000.161.171-18' WHERE idDpto = 3;
+UPDATE DEPARTAMENTO SET CPFGerente = '161.616.161-61' WHERE idDpto = 4;
+UPDATE DEPARTAMENTO SET CPFGerente = '000.251.261-27' WHERE idDpto = 5;
 
-#verifica quais funcionarios sao gerentes de um departamento
-select f.CPFfuncionario, f.idDpto
-from departamento d
-inner join funcionario f on (d.cpfgerente = f.cpfFuncionario);
-
-#atualizar os gerentes dos funcionarios
-update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 1) where idDpto = 1;
-update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 2) where idDpto = 2;
-update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 3) where idDpto = 3;
-update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 4) where idDpto = 4;
-update funcionario set CPFGerente = (select CPFGerente from departamento d where idDpto = 5) where idDpto = 5;
-
+# ATUALIZA OS GERENTES DOS FUNCIONÁRIOS
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 1) WHERE idDpto = 1;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 2) WHERE idDpto = 2;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 3) WHERE idDpto = 3;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 4) WHERE idDpto = 4;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 5) WHERE idDpto = 5;
 
 
