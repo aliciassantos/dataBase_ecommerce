@@ -3,22 +3,24 @@ SELECT * FROM CATEGORIA;
 SELECT * FROM CLIENTE; 
 SELECT * FROM COMPRA;
 SELECT * FROM CARRINHO; 
+SELECT * FROM NOTAFISCAL;
 SELECT * FROM PRODUTO;
 SELECT * FROM FORNECEDOR; 
 SELECT * FROM FORNECIDO; 
 SELECT * FROM DEPARTAMENTO; 
 SELECT * FROM FUNCIONARIO;
-SELECT * FROM NOTAFISCAL;
 SELECT * FROM PESSOA;
 SELECT * FROM ITEM;
 
+#------------------------------------- CONSULTAS DE UTILIDADE ENVOLVENDO O AUTORRELACIONAMENTO -------------------------------------
+# Verifica quais funcionários são gerentes de um departamento 
+SELECT DISTINCT g.CPFfuncionario, g.idDpto, p.Nome
+FROM funcionario g
+INNER JOIN funcionario f ON (f.cpfgerente = g.cpfFuncionario)
+INNER JOIN PESSOA p ON p.CPF = g.CPFfuncionario
+ORDER BY g.idDpto;
+
 #------------------------------------- CONSULTAS DE UTILIDADE -------------------------------------
-
-# Verifica quais funcionários são gerentes de um departamento
-SELECT f.CPFfuncionario, f.idDpto 
-FROM departamento d
-INNER JOIN funcionario f ON (d.cpfgerente = f.cpfFuncionario); 
-
 # Exibe quais funcionários também são clientes
 SELECT e.cpffuncionario AS CPFPessoa 
 FROM funcionario e
@@ -38,13 +40,25 @@ FROM PRODUTO p INNER JOIN FORNECIDO fe
 ON p.idProduto = fe.idProduto
 INNER JOIN FORNECEDOR fo
 ON fo.CNPJ = fe.CNPJ
-WHERE fo.CNPJ = '03.456.789/0001-03';
+WHERE fo.Nome = 'Make Prime';
 
 # Verifica a quantidade de vendas realizadas no dia 04/11/2025
 SELECT COUNT(dataCompra) AS 'Quantidade vendas'
 FROM COMPRA
 WHERE dataCompra = '2025-11-04'
 GROUP BY dataCompra;
+
+# Todas as notas fiscais geradas por compras por cada cliente 
+SELECT nf.serieNF, nf.numeroNF, c.CPFCliente, p.Nome
+FROM NOTAFISCAL nf 
+INNER JOIN COMPRA cp
+ON (nf.idCompra = cp.idCompra)
+LEFT OUTER JOIN CARRINHO car
+ON car.idCarrinho = cp.idCarrinho
+INNER JOIN CLIENTE c
+ON car.CPFCliente = c.CPFCliente
+INNER JOIN PESSOA p
+ON p.CPF = c.CPFCliente;
 
 # Exibe os nomes dos produtos que foram fornecidos em uma quantidade menor que 50
 SELECT p.descProduto, fdo.qtdForn
