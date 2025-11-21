@@ -254,6 +254,8 @@ INSERT INTO FORNECEDOR (CNPJ, nome, Email, CEP, RUA, CIDADE, NUMERO, Estado, Ref
 ('04.567.890/0001-04', 'Papelaria Saraiva', 'financeiro@lograpida.com', '40200-004', 'Rua da Bahia', 'Salvador', 320, 'BA', 'Transporte e entrega'),
 ('05.678.901/0001-05', 'Móveis Conforto', 'vendas@moveisconforto.com', '60300-005', 'Rua Monsenhor Tabosa', 'Fortaleza', 88, 'CE', 'Mobiliário de escritório');
 
+SELECT * FROM PRODUTO
+WHERE idProduto =1;
 #inserção de fornecido
 INSERT INTO FORNECIDO (qtdForn, dataEntrega, CNPJ, IdProduto) VALUES
 (50, '2025-11-01', '01.234.567/0001-01', 1),

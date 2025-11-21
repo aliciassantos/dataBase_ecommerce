@@ -1,4 +1,4 @@
-DROP DATABASE ecommerceLiliENana;
+#DROP DATABASE ecommerceLiliENana;
 CREATE DATABASE ecommerceLiliENana;
 
 use ecommerceLiliENana;
