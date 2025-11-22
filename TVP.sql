@@ -39,4 +39,37 @@ LEFT JOIN
 LEFT JOIN
     PRODUTO Prod ON I.idProduto = Prod.idProduto
 ORDER BY
-    Co.dataCompra DESC;
+    Co.idCompra DESC;
+
+
+
+
+#A procedure cria um novo registro na tabela COMPRA, insere seus valores na tabela e calcula o valor total
+DELIMITER // 
+CREATE PROCEDURE RegistrarCompra (
+    IN VidCarrinho INT 
+)
+
+BEGIN
+DECLARE VprecoTotal DECIMAL (10, 2) DEFAULT 0;
+DECLARE Vstatus VARCHAR(20) DEFAULT  ‘Processamento’;
+DECLARE VdataDaCompra DATE DEFAULT CURDATE();
+
+    SELECT SUM(p.precoProduto * i.quantProduto) INTO VprecoTotal
+    FROM ITEM it
+    INNER JOIN PRODUTO p 
+    ON it.idProduto = p.idProduto
+    WHERE it.idCarrinho = VidCarrinho;
+
+    IF VprecoTotal IS NULL OR VprecoTotal = 0 THEN
+    SIGNAL SQLSTATE '45000' SET MESSAGE_TEXT = 'ERRO: Carrinho vazio ou inválido.';
+    ELSE
+
+    INSERT INTO COMPRA(idCarrinho, precoTotal, Status, dataCompra) VALUES (
+    VidCarrinho, VprecoTotal, Vstatus, VdataDaCompra );
+    END IF;
+END //
+
+
+
+

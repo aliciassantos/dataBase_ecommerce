@@ -311,6 +311,38 @@ INSERT INTO CARRINHO (CPFcliente, quantProduto) VALUES
 ('000.320.320-32', 0), 
 ('000.191.201-21', 0);
  
+
+ #inserção de compras
+INSERT INTO COMPRA (idCompra, idCarrinho, precoTotal, Status, dataCompra) VALUES
+(101, 1, 0, 'Processamento', '2025-11-01'),
+(102, 2, 0, 'Enviado', '2025-11-02'),
+(103, 3, 0, 'Entregue', '2025-11-03'),
+(104, 4, 0, 'Enviado', '2025-11-04'),
+(105, 5, 0, 'Processamento', '2025-11-05'),
+(106, 6, 0, 'Entregue', '2025-11-06'),
+(107, 7, 0, 'Enviado', '2025-11-07'),
+(108, 8, 0, 'Processamento', '2025-11-08'),
+(109, 9, 0, 'Entregue', '2025-11-09'),
+(110, 10, 0, 'Enviado', '2025-11-10'),
+(111, 11, 0, 'Processamento', '2025-11-01'),
+(112, 12, 0, 'Entregue', '2025-11-02'),
+(113, 13, 0, 'Enviado', '2025-11-03'),
+(114, 14, 0, 'Processamento', '2025-11-04');
+
+# Inserção de NF
+INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao, valorTotalCompra, idCompra) VALUES 
+('001', 101000001, 'Emitida', 'Cartão de Crédito', '2025-11-01', 0, 101), ('001', 101000002, 'Emitida', 'Pix', '2025-11-02', 0, 102), 
+('001', 101000003, 'Emitida', 'Boleto', '2025-11-03', 0, 103), 
+('001', 101000004, 'Emitida', 'Cartão de Débito', '2025-11-04', 0, 104), 
+('001', 101000005, 'Emitida', 'Cartão de Crédito', '2025-11-05', 0, 105), ('001', 101000006, 'Emitida', 'Pix', '2025-11-06', 0, 106),
+('001', 101000007, 'Emitida', 'Boleto', '2025-11-07', 0, 107),
+('001', 101000008, 'Emitida', 'Cartão de Crédito', '2025-11-08', 0, 108), ('001', 101000009, 'Emitida', 'Cartão de Débito', '2025-11-09', 0, 109),
+('001', 101000010, 'Emitida', 'Pix', '2025-11-10', 0, 110),
+('001', 101000011, 'Emitida', 'Cartão de Débito', '2025-11-11', 0, 111), 
+('001', 101000012, 'Emitida', 'Boleto', '2025-11-12', 0, 112), 
+('001', 101000013, 'Emitida', 'Pix', '2025-11-13', 0, 113), 
+('001', 101000014, 'Emitida', 'Cartão de Crédito', '2025-11-14', 0, 114);
+
 #inserção de itens
 INSERT INTO ITEM (idProduto, idCarrinho) VALUES (1, 1),
  (12, 1), (61, 1), (63, 1), (74, 1), (52, 2), (55, 2),
@@ -320,40 +352,11 @@ INSERT INTO ITEM (idProduto, idCarrinho) VALUES (1, 1),
  (64, 6), (68, 6), (36, 6), (76, 6), (79, 6), (6, 7), 
  (71, 7), (72, 7), (93, 7), (14, 8), (29, 8), (30, 8), 
  (82, 8), (85, 8), (10, 9), (31, 9), (38, 9), (57, 9), 
- (60, 9),(50, 10), (45, 10),(77, 10), (62, 10), (67, 10);
+ (60, 9),(50, 10), (45, 10),(77, 10), (62, 10), (67, 10),
+ (1, 11), (2, 11), (3, 11), (4, 12), (5, 12), (6, 13),
+ (7, 13), (8, 13), (9, 13), (10, 14);
+;
  
- #inserção de compras
-INSERT INTO COMPRA (idCompra, idCarrinho, precoTotal, Status, dataCompra) VALUES
-(101, 1, 1500.00, 'Processamento', '2025-11-01'),
-(102, 2, 890.50, 'Enviado', '2025-11-02'),
-(103, 3, 3200.00, 'Entregue', '2025-11-03'),
-(104, 4, 450.99, 'Enviado', '2025-11-04'),
-(105, 5, 5100.25, 'Processamento', '2025-11-05'),
-(106, 6, 1250.70, 'Entregue', '2025-11-06'),
-(107, 7, 205.10, 'Enviado', '2025-11-07'),
-(108, 8, 7500.00, 'Processamento', '2025-11-08'),
-(109, 9, 980.00, 'Entregue', '2025-11-09'),
-(110, 10, 11200.00, 'Enviado', '2025-11-10'),
-(111, 11, 900.00, 'Processamento', '2025-11-01'),
-(112, 12, 1800.50, 'Entregue', '2025-11-02'),
-(113, 13, 410.00, 'Enviado', '2025-11-03'),
-(114, 14, 850.99, 'Processamento', '2025-11-04');
-
-# Inserção de NF
-INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao, valorTotalCompra, idCompra) VALUES 
-('001', 101000001, 'Emitida', 'Cartão de Crédito', '2025-11-01', 1500.00, 101), ('001', 101000002, 'Emitida', 'Pix', '2025-11-02', 890.50, 102), 
-('001', 101000003, 'Emitida', 'Boleto', '2025-11-03', 3200.00, 103), 
-('001', 101000004, 'Emitida', 'Cartão de Débito', '2025-11-04', 450.99, 104), 
-('001', 101000005, 'Emitida', 'Cartão de Crédito', '2025-11-05', 5100.25, 105), ('001', 101000006, 'Emitida', 'Pix', '2025-11-06', 1250.70, 106),
-('001', 101000007, 'Emitida', 'Boleto', '2025-11-07', 205.10, 107),
-('001', 101000008, 'Emitida', 'Cartão de Crédito', '2025-11-08', 7500.00, 108), ('001', 101000009, 'Emitida', 'Cartão de Débito', '2025-11-09', 980.00, 109),
-('001', 101000010, 'Emitida', 'Pix', '2025-11-10', 11200.00, 110),
-('001', 101000011, 'Emitida', 'Cartão de Débito', '2025-11-11', 880.00, 111), 
-('001', 101000012, 'Emitida', 'Boleto', '2025-11-12', 150.50, 112), 
-('001', 101000013, 'Emitida', 'Pix', '2025-11-13', 4200.00, 113), 
-('001', 101000014, 'Emitida', 'Cartão de Crédito', '2025-11-14', 630.90, 114);
-
-
 # ATUALIZA OS GERENTES DOS DEPARTAMENTOS
 UPDATE DEPARTAMENTO SET CPFGerente = '000.281.291-30' WHERE idDpto = 1;
 UPDATE DEPARTAMENTO SET CPFGerente = '000.131.141-15' WHERE idDpto = 2;
