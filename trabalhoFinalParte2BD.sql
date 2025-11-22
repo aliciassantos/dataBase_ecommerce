@@ -225,6 +225,18 @@ FOR EACH ROW BEGIN
 
 DELIMITER ;
 
+DELIMITER //
+CREATE TRIGGER atualizapreço AFTER INSERT -- a trigger acontecerá após uma nova inserção de item 
+ON Item 
+FOR EACH ROW BEGIN 
+    -- Após a inserção, o preço será atualizado, recebendo a sua nova quantidade de estoque
+    UPDATE Compra 
+    SET precoTotal = precoTotal + (select precoProduto from Produto where idProduto=new.idProduto)
+    WHERE idCarrinho = NEW.idCarrinho;
+
+ END //
+
+DELIMITER ;
 
 
 
