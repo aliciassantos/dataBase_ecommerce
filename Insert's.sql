@@ -279,6 +279,8 @@ INSERT INTO FORNECIDO (qtdForn, dataEntrega, CNPJ, IdProduto) VALUES
 (110, '2025-11-22', '04.567.890/0001-04', 32), 
 (70, '2025-10-27', '05.678.901/0001-05', 35);
 
+insert into fornecido(qtdForn, dataEntrega, CNPJ, IdProduto) VALUES (70, '2025-10-29', '05.678.901/0001-05', 35);
+
 #inserção de cliente
 INSERT INTO CLIENTE (cpfCliente, classeCliente) VALUES
 ('000.300.300-30', 'VIP+'),  

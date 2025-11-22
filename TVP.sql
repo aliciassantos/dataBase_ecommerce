@@ -1,21 +1,3 @@
-/*
-DELIMITER //
-CREATE TRIGGER tr_log_pedido_deletado BEFORE DELETE
-ON Pedido
-FOR EACH ROW BEGIN
-    DECLARE vNomeProd VARCHAR(45);
-
-    SELECT nome INTO vNomeProd
-    FROM produtos
-    WHERE idProdutos = OLD.idProdutos;
-
-    INSERT INTO Log (descricao)
-    VALUES (CONCAT(
-        'Pedido Deletado - Quantidade: ', OLD.Quantidade,
-        ' | Produto: ', v_nome_produto
-    ));
-END //
-*/
 
 #--------------------------- TRIGGERS ---------------------------
 #TRIGGER PARA ATUALIZAR UM ESTOQUE
@@ -50,3 +32,48 @@ FOR EACH ROW BEGIN
 END //
 
 DELIMITER ;
+
+/*
+  VIEW principal para o grupo operacional (Financeiro, Suporte, Logística, Compras).
+  Contém dados sobre compras, entregas, estoque e fornecimento.Ela foca em transações, movimentos de mercadorias e dados essenciais para o fluxo de caixa.
+*/
+select * from InformacoesOperacionais;
+drop view InformacoesOperacionais;
+CREATE VIEW InformacoesOperacionais AS
+SELECT
+    -- Dados de Compra e Cliente
+    Co.idCompra AS ID_Pedido,
+    P.Nome AS NomeCliente,
+    P.CPF AS CPFCliente,
+    Co.dataCompra AS DataPedido,
+    Co.status AS StatusEntrega,
+
+    -- Dados Financeiros (Acesso Restrito ao Financeiro)
+    Co.precoTotal AS ValorTotalPedido,
+    NF.FormaDePagamento,
+
+    -- Dados de Entrega (Logística)
+    P.Rua as Rua,
+    P.Numero as Numero,
+    P.Cidade as Cidade,
+    p.Estado as Estado,
+
+    -- Dados de Estoque/Fornecimento
+    Prod.descProduto AS ItemComprado,
+    Prod.quantEstoque AS EstoqueAtualProduto
+FROM
+    COMPRA Co
+JOIN
+    CARRINHO Ca ON Co.idCarrinho = Ca.idCarrinho
+JOIN
+    CLIENTE C ON Ca.CPFCliente = C.cpfCliente
+JOIN
+    PESSOA P ON C.cpfCliente = P.CPF
+LEFT JOIN
+    NotaFiscal NF ON Co.idCompra = NF.idCompra
+LEFT JOIN
+    ITEM I ON Ca.idCarrinho = I.idCarrinho
+LEFT JOIN
+    PRODUTO Prod ON I.idProduto = Prod.idProduto
+ORDER BY
+    Co.dataCompra DESC;

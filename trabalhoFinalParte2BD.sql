@@ -1,4 +1,4 @@
-#DROP DATABASE ecommerceLiliENana;
+DROP DATABASE ecommerceLiliENana;
 CREATE DATABASE ecommerceLiliENana;
 
 use ecommerceLiliENana;
@@ -175,7 +175,7 @@ CREATE TABLE FORNECIDO(
     idProduto INT,
     
     #Definição das chaves
-    PRIMARY KEY (CNPJ,idProduto),
+    PRIMARY KEY (CNPJ,idProduto,dataEntrega),
     FOREIGN KEY (CNPJ) REFERENCES FORNECEDOR(CNPJ) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (idProduto) REFERENCES PRODUTO(idProduto) ON DELETE RESTRICT ON UPDATE CASCADE
 );

@@ -124,3 +124,4 @@ WHERE f.salario < (
     FROM FUNCIONARIO
     WHERE idDpto = 1
 ); 
+
