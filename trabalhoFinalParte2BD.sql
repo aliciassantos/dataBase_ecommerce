@@ -212,6 +212,9 @@ END //
 
 DELIMITER ;
 
+
+
+
 DELIMITER //
 CREATE TRIGGER atualizaQuantidaadeproduto AFTER INSERT 
 ON Item 
@@ -225,8 +228,10 @@ FOR EACH ROW BEGIN
 
 DELIMITER ;
 
+
+
 DELIMITER //
-CREATE TRIGGER atualizapreço AFTER INSERT -- a trigger acontecerá após uma nova inserção de item 
+CREATE TRIGGER atualizapreçoCompra AFTER INSERT -- a trigger acontecerá após uma nova inserção de item 
 ON Item 
 FOR EACH ROW BEGIN 
     -- Após a inserção, o preço será atualizado, recebendo a sua nova quantidade de estoque
@@ -237,6 +242,24 @@ FOR EACH ROW BEGIN
  END //
 
 DELIMITER ;
+
+
+
+DELIMITER //
+CREATE TRIGGER atualizapreçoNota AFTER UPDATE-- a trigger acontecerá após um upade de Compra
+ON Compra
+FOR EACH ROW BEGIN 
+    -- Após o Update, o preço será atualizado, recebendo o novo preço
+    UPDATE NOTAFISCAL
+    SET  valorTotalCompra  = new.precoTotal
+    WHERE  idCompra= NEW.idCompra;
+
+ END //
+
+DELIMITER ;
+
+
+
 
 
 
