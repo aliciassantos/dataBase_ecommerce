@@ -114,7 +114,7 @@ CREATE TABLE CARRINHO(
 	idCarrinho INT AUTO_INCREMENT,
     CPFCliente VARCHAR(14),
     quantProduto INT 
-    CHECK (quantProduto > 0), -- Verifica se a quantidade de produtos no carrinho é válida
+    CHECK (quantProduto >= 0), -- Verifica se a quantidade de produtos no carrinho é válida
     
     #Definição das chaves
     PRIMARY KEY (idCarrinho),
@@ -179,6 +179,51 @@ CREATE TABLE FORNECIDO(
     FOREIGN KEY (CNPJ) REFERENCES FORNECEDOR(CNPJ) ON DELETE RESTRICT ON UPDATE CASCADE,
     FOREIGN KEY (idProduto) REFERENCES PRODUTO(idProduto) ON DELETE RESTRICT ON UPDATE CASCADE
 );
+
+#--------------------------- TRIGGERS ---------------------------
+#TRIGGER PARA ATUALIZAR UM ESTOQUE
+
+DELIMITER //
+CREATE TRIGGER atualizaEstoque AFTER INSERT -- a trigger acontecerá após uma nova inserção de estoque
+ON FORNECIDO
+FOR EACH ROW BEGIN 
+	-- Após a inserção, o produto será atualizado, recebendo a sua nova quantidade de estoque
+	UPDATE PRODUTO 
+    SET quantEstoque = quantEstoque + NEW.qtdForn
+    WHERE idProduto = NEW.idProduto;
+    
+ END //   
+
+DELIMITER ;
+
+#TRIGGER PARA IMPEDIR QUE UM FUNCIONÁRIO SEJA GERENTE DE SI MESMO
+SELECT * FROM FUNCIONARIO;
+SELECT * FROM DEPARTAMENTO;
+
+DELIMITER //
+CREATE TRIGGER verificaGerencia BEFORE INSERT 
+ON FUNCIONARIO
+FOR EACH ROW BEGIN
+	    IF NEW.CPFGerente = NEW.CPFfuncionario THEN
+        SIGNAL SQLSTATE '45000'
+        SET MESSAGE_TEXT = 'Erro: não é possível um funcionário gerenciar a si mesmo';
+	END IF;
+END //
+
+DELIMITER ;
+
+DELIMITER //
+CREATE TRIGGER atualizaQuantidaadeproduto AFTER INSERT 
+ON Item 
+FOR EACH ROW BEGIN 
+
+    UPDATE Carrinho 
+    SET quantProduto = quantProduto +1
+    WHERE idCarrinho = NEW.idCarrinho;
+
+ END //
+
+DELIMITER ;
 
 
 

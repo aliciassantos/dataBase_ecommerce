@@ -296,20 +296,20 @@ INSERT INTO CLIENTE (cpfCliente, classeCliente) VALUES
 
 #Inserção de CARRINHO
 INSERT INTO CARRINHO (CPFcliente, quantProduto) VALUES
-('000.300.300-30', 5),
-('000.310.310-31', 6),
-('000.320.320-32', 8), 
-( '000.191.201-21', 5),
-('000.251.261-27', 6), 
-( '121.121.121-21', 6), 
-('131.313.131-13', 7), 
-('000.444.555-66', 9), 
-('000.131.141-15', 7), 
-('000.111.222-33', 10),
-('000.300.300-30', 4), 
-('000.310.310-31', 7), 
-('000.320.320-32', 3), 
-('000.191.201-21', 9);
+('000.300.300-30', 0),
+('000.310.310-31', 0),
+('000.320.320-32', 0), 
+('000.191.201-21', 0),
+('000.251.261-27', 0), 
+('121.121.121-21', 0), 
+('131.313.131-13',0), 
+('000.444.555-66', 0), 
+('000.131.141-15', 0), 
+('000.111.222-33', 0),
+('000.300.300-30', 0), 
+('000.310.310-31', 0), 
+('000.320.320-32', 0), 
+('000.191.201-21', 0);
  
 #inserção de itens
 INSERT INTO ITEM (idProduto, idCarrinho) VALUES (1, 1),
@@ -340,16 +340,19 @@ INSERT INTO COMPRA (idCompra, idCarrinho, precoTotal, Status, dataCompra) VALUES
 (114, 14, 850.99, 'Processamento', '2025-11-04');
 
 # Inserção de NF
-INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao, valorTotalCompra, idCompra) VALUES ('001', 101000001, 'Emitida', 'Cartão de Crédito', '2025-11-01', 1500.00, 101), 
-('001', 101000002, 'Emitida', 'Pix', '2025-11-02', 890.50, 102),
- ('001', 101000003, 'Emitida', 'Boleto', '2025-11-03', 3200.00, 103),
- ('001', 101000004, 'Emitida', 'Cartão de Débito', '2025-11-04', 450.99, 104), 
- ('001', 101000005, 'Emitida', 'Cartão de Crédito', '2025-11-05', 5100.25, 105), 
- ('001', 101000006, 'Emitida', 'Pix', '2025-11-06', 1250.70, 106), 
- ('001', 101000007, 'Emitida', 'Boleto', '2025-11-07', 205.10, 107), 
- ('001', 101000008, 'Emitida', 'Cartão de Crédito', '2025-11-08', 7500.00, 108),
- ('001', 101000009, 'Emitida', 'Cartão de Débito', '2025-11-09', 980.00, 109), 
- ('001', 101000010, 'Emitida', 'Pix', '2025-11-10', 11200.00, 110);
+INSERT INTO NOTAFISCAL (serieNF, numeroNF, Status, FormaDePagamento, dataEmissao, valorTotalCompra, idCompra) VALUES 
+('001', 101000001, 'Emitida', 'Cartão de Crédito', '2025-11-01', 1500.00, 101), ('001', 101000002, 'Emitida', 'Pix', '2025-11-02', 890.50, 102), 
+('001', 101000003, 'Emitida', 'Boleto', '2025-11-03', 3200.00, 103), 
+('001', 101000004, 'Emitida', 'Cartão de Débito', '2025-11-04', 450.99, 104), 
+('001', 101000005, 'Emitida', 'Cartão de Crédito', '2025-11-05', 5100.25, 105), ('001', 101000006, 'Emitida', 'Pix', '2025-11-06', 1250.70, 106),
+('001', 101000007, 'Emitida', 'Boleto', '2025-11-07', 205.10, 107),
+('001', 101000008, 'Emitida', 'Cartão de Crédito', '2025-11-08', 7500.00, 108), ('001', 101000009, 'Emitida', 'Cartão de Débito', '2025-11-09', 980.00, 109),
+('001', 101000010, 'Emitida', 'Pix', '2025-11-10', 11200.00, 110),
+('001', 101000011, 'Emitida', 'Cartão de Débito', '2025-11-11', 880.00, 111), 
+('001', 101000012, 'Emitida', 'Boleto', '2025-11-12', 150.50, 112), 
+('001', 101000013, 'Emitida', 'Pix', '2025-11-13', 4200.00, 113), 
+('001', 101000014, 'Emitida', 'Cartão de Crédito', '2025-11-14', 630.90, 114);
+
 
 # ATUALIZA OS GERENTES DOS DEPARTAMENTOS
 UPDATE DEPARTAMENTO SET CPFGerente = '000.281.291-30' WHERE idDpto = 1;

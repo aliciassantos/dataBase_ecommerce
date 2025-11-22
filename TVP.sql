@@ -1,38 +1,4 @@
 
-#--------------------------- TRIGGERS ---------------------------
-#TRIGGER PARA ATUALIZAR UM ESTOQUE
-SELECT * FROM PRODUTO;
-SELECT * FROM FORNECIDO;
-
-DELIMITER //
-CREATE TRIGGER atualizaEstoque AFTER INSERT -- a trigger acontecerá após uma nova inserção de estoque
-ON FORNECIDO
-FOR EACH ROW BEGIN 
-	-- Após a inserção, o produto será atualizado, recebendo a sua nova quantidade de estoque
-	UPDATE PRODUTO 
-    SET quantEstoque = quantEstoque + NEW.qtdForn
-    WHERE idProduto = NEW.idProduto;
-    
- END //   
-
-DELIMITER ;
-
-#TRIGGER PARA IMPEDIR QUE UM FUNCIONÁRIO SEJA GERENTE DE SI MESMO
-SELECT * FROM FUNCIONARIO;
-SELECT * FROM DEPARTAMENTO;
-
-DELIMITER //
-CREATE TRIGGER verificaGerencia BEFORE INSERT 
-ON FUNCIONARIO
-FOR EACH ROW BEGIN
-	    IF NEW.CPFGerente = NEW.CPFfuncionario THEN
-        SIGNAL SQLSTATE '45000'
-        SET MESSAGE_TEXT = 'Erro: não é possível um funcionário gerenciar a si mesmo';
-	END IF;
-END //
-
-DELIMITER ;
-
 /*
   VIEW principal para o grupo operacional (Financeiro, Suporte, Logística, Compras).
   Contém dados sobre compras, entregas, estoque e fornecimento.Ela foca em transações, movimentos de mercadorias e dados essenciais para o fluxo de caixa.
@@ -41,24 +7,21 @@ select * from InformacoesOperacionais;
 drop view InformacoesOperacionais;
 CREATE VIEW InformacoesOperacionais AS
 SELECT
-    -- Dados de Compra e Cliente
+#dados do cliente
     Co.idCompra AS ID_Pedido,
     P.Nome AS NomeCliente,
     P.CPF AS CPFCliente,
     Co.dataCompra AS DataPedido,
     Co.status AS StatusEntrega,
-
-    -- Dados Financeiros (Acesso Restrito ao Financeiro)
+#dados financeiros
     Co.precoTotal AS ValorTotalPedido,
     NF.FormaDePagamento,
-
-    -- Dados de Entrega (Logística)
+#dados residenciais
     P.Rua as Rua,
-    P.Numero as Numero,
+    P.Numero as Número,
     P.Cidade as Cidade,
     p.Estado as Estado,
-
-    -- Dados de Estoque/Fornecimento
+#dados do produto comprado
     Prod.descProduto AS ItemComprado,
     Prod.quantEstoque AS EstoqueAtualProduto
 FROM

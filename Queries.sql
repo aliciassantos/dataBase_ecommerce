@@ -11,6 +11,7 @@ SELECT * FROM DEPARTAMENTO;
 SELECT * FROM FUNCIONARIO;
 SELECT * FROM PESSOA;
 SELECT * FROM ITEM;
+#50 45 77 62 67
 
 #------------------------------------- CONSULTAS DE UTILIDADE ENVOLVENDO O AUTORRELACIONAMENTO -------------------------------------
 # Verifica quais funcionários são gerentes de um departamento 
