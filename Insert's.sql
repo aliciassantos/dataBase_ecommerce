@@ -44,8 +44,8 @@ INSERT INTO PESSOA (sexo, Nome, Telefone, Email, CPF, CEP, RUA, CIDADE, NUMERO, 
 ('M', 'Zeca Brito', '(19) 92109-8765', 'zeca.brito@email.com', '000.251.261-27', '13010-244', 'Rua V', 'Campinas', 251, 'SP', 'Referência Padaria'),
 ('F', 'Alícia Dutra', '(19) 91098-7654', 'alicia.dutra@email.com', '121.121.121-21', '13020-255', 'Rua W', 'Campinas', 121, 'SP', 'Bloco Q'),
 ('M', 'Bento Ferreira', '(47) 90987-6543', 'bento.ferreira@email.com', '131.313.131-13', '88010-266', 'Rua X', 'Florianópolis', 131, 'SC', 'Casa 9'),
-('F', 'Cecília Guedes', '(47) 98765-4321', 'cecilia.guedes@email.com', '000.444.555-66', '88020-277', 'Rua Y', 'Florianópolis', 444, 'SC', 'Apto 8D');
-
+('F', 'Cecília Guedes', '(47) 98765-4321', 'cecilia.guedes@email.com', '000.444.555-66', '88020-277', 'Rua Y', 'Florianópolis', 444, 'SC', 'Apto 8D'),
+('F', 'Geovanna Brunao', '(11) 94322-8139', 'nanaBoladona@gmail.com', '332.131.141-15', '14031-460', 'Rua Xaolin do sertão', 'Piracicaba', 191, 'SP', 'Atrás do canto da bola');
 #inserção de pessoas que são clientes
 INSERT INTO PESSOA (sexo, Nome, Telefone, Email, CPF, CEP, RUA, CIDADE, NUMERO, Estado, Referencia) VALUES
 ('F', 'Denise Ferreira', '(11) 95555-1234', 'denise.cliente@email.com', '000.300.300-30', '03000-300', 'Av. das Flores', 'São Paulo', 300, 'SP', 'Bloco A, Apto 10'),
@@ -97,6 +97,10 @@ INSERT INTO FUNCIONARIO (CPFfuncionario, idDpto, NumeroConta, AgenciaConta, Sala
 ('121.121.121-21', 4, '94221678-0', '1999', 6100.00),
 ('131.313.131-13', 1, '93321678-0', '1829', 3000.00),
 ('000.444.555-66', 3, '30000-02', '0200-5', 5300.00);
+
+
+INSERT INTO FUNCIONARIO (CPFfuncionario, NumeroConta, AgenciaConta, Salario) VALUES('332.131.141-15','40003-07','0999-5',50000.41);
+
 
 
 #inserção de categorias
@@ -354,9 +358,17 @@ INSERT INTO ITEM (idProduto, idCarrinho) VALUES (1, 1),
  (82, 8), (85, 8), (10, 9), (31, 9), (38, 9), (57, 9), 
  (60, 9),(50, 10), (45, 10),(77, 10), (62, 10), (67, 10),
  (1, 11), (2, 11), (3, 11), (4, 12), (5, 12), (6, 13),
- (7, 13), (8, 13), (9, 13), (10, 14);
-;
- 
+ (7, 13), (8, 13), (9, 13), (10, 14),(10, 14);
+
+# ATUALIZA O GERENTE DOS GERENTES DOS DEPARTAMENTOS
+UPDATE FUNCIONARIO SET CPFGerente = '332.131.141-15' WHERE CPFfuncionario = '000.281.291-30';
+UPDATE FUNCIONARIO SET CPFGerente = '332.131.141-15' WHERE CPFfuncionario = '000.131.141-15';
+UPDATE FUNCIONARIO SET CPFGerente = '332.131.141-15' WHERE CPFfuncionario = '000.161.171-18';
+UPDATE FUNCIONARIO SET CPFGerente = '332.131.141-15' WHERE CPFfuncionario = '161.616.161-61';
+UPDATE FUNCIONARIO SET CPFGerente = '332.131.141-15' WHERE CPFfuncionario = '000.251.261-27';
+
+
+
 # ATUALIZA OS GERENTES DOS DEPARTAMENTOS
 UPDATE DEPARTAMENTO SET CPFGerente = '000.281.291-30' WHERE idDpto = 1;
 UPDATE DEPARTAMENTO SET CPFGerente = '000.131.141-15' WHERE idDpto = 2;
@@ -364,11 +376,12 @@ UPDATE DEPARTAMENTO SET CPFGerente = '000.161.171-18' WHERE idDpto = 3;
 UPDATE DEPARTAMENTO SET CPFGerente = '161.616.161-61' WHERE idDpto = 4;
 UPDATE DEPARTAMENTO SET CPFGerente = '000.251.261-27' WHERE idDpto = 5;
 
+
 # ATUALIZA OS GERENTES DOS FUNCIONÁRIOS
-UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 1) WHERE idDpto = 1;
-UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 2) WHERE idDpto = 2;
-UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 3) WHERE idDpto = 3;
-UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 4) WHERE idDpto = 4;
-UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 5) WHERE idDpto = 5;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 1) WHERE idDpto = 1 and CPFGerente IS NULL;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 2) WHERE idDpto = 2 and CPFGerente IS NULL; 
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 3) WHERE idDpto = 3 and CPFGerente IS NULL;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 4) WHERE idDpto = 4 and CPFGerente IS NULL;
+UPDATE FUNCIONARIO SET CPFGerente = (SELECT CPFGerente FROM DEPARTAMENTO d WHERE idDpto = 5) WHERE idDpto = 5 and CPFGerente IS NULL;
 
 

@@ -181,83 +181,64 @@ CREATE TABLE FORNECIDO(
 );
 
 #--------------------------- TRIGGERS ---------------------------
-#TRIGGER PARA ATUALIZAR UM ESTOQUE
+#TRIGGER PARA ATUALIZAR UM ESTOQUE - certa
 
 DELIMITER //
-CREATE TRIGGER atualizaEstoque AFTER INSERT -- a trigger acontecerá após uma nova inserção de estoque
-ON FORNECIDO
+CREATE TRIGGER atualizaEstoque AFTER INSERT ON FORNECIDO
 FOR EACH ROW BEGIN 
-	-- Após a inserção, o produto será atualizado, recebendo a sua nova quantidade de estoque
 	UPDATE PRODUTO 
     SET quantEstoque = quantEstoque + NEW.qtdForn
     WHERE idProduto = NEW.idProduto;
-    
  END //   
-
 DELIMITER ;
 
-#TRIGGER PARA IMPEDIR QUE UM FUNCIONÁRIO SEJA GERENTE DE SI MESMO
-SELECT * FROM FUNCIONARIO;
-SELECT * FROM DEPARTAMENTO;
-
+#TRIGGER PARA VERIFICAR SE UM FUNCIONARIO GERENCIA ELE MESMO - certa
 DELIMITER //
-CREATE TRIGGER verificaGerencia BEFORE INSERT 
+CREATE TRIGGER verificaGerencia BEFORE UPDATE
 ON FUNCIONARIO
 FOR EACH ROW BEGIN
-	    IF NEW.CPFGerente = NEW.CPFfuncionario THEN
+        IF NEW.CPFGerente = NEW.CPFfuncionario THEN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'Erro: não é possível um funcionário gerenciar a si mesmo';
-	END IF;
+    END IF;
 END //
 
 DELIMITER ;
 
 
-
-
+#TRIGGER PARA ATUALIZAR A QUANTIDADE DE PRODUTO DO CARRINHO QUANDO FOR ADICIONADO UM NOVO ITEM certo
 DELIMITER //
-CREATE TRIGGER atualizaQuantidaadeproduto AFTER INSERT 
-ON Item 
+CREATE TRIGGER atualizaQuantidaadeproduto AFTER INSERT ON Item 
 FOR EACH ROW BEGIN 
-
     UPDATE Carrinho 
     SET quantProduto = quantProduto +1
     WHERE idCarrinho = NEW.idCarrinho;
-
  END //
-
 DELIMITER ;
 
-
-
+#TRIGGER PARA ATUALIZAR O PREÇO TOTAL DA COMPRA DENTRO DA TABELA COMPRA certo
 DELIMITER //
-CREATE TRIGGER atualizapreçoCompra AFTER INSERT -- a trigger acontecerá após uma nova inserção de item 
-ON Item 
+CREATE TRIGGER atualizapreçoCompra AFTER INSERT ON Item 
 FOR EACH ROW BEGIN 
-    -- Após a inserção, o preço será atualizado, recebendo a sua nova quantidade de estoque
     UPDATE Compra 
-    SET precoTotal = precoTotal + (select precoProduto from Produto where idProduto=new.idProduto)
+    SET precoTotal = precoTotal + (select precoProduto from Produto where idProduto = new.idProduto)
     WHERE idCarrinho = NEW.idCarrinho;
-
  END //
 
 DELIMITER ;
 
-
-
+#TRIGGER QUE ATUALIZA O PREÇO CADASTRADO NA NOTA FISCAL
 DELIMITER //
-CREATE TRIGGER atualizapreçoNota AFTER UPDATE-- a trigger acontecerá após um upade de Compra
-ON Compra
+CREATE TRIGGER atualizapreçoNota AFTER UPDATE ON Compra
 FOR EACH ROW BEGIN 
     -- Após o Update, o preço será atualizado, recebendo o novo preço
     UPDATE NOTAFISCAL
     SET  valorTotalCompra  = new.precoTotal
-    WHERE  idCompra= NEW.idCompra;
+    WHERE  idCompra = NEW.idCompra;
 
  END //
 
 DELIMITER ;
-
 
 
 
