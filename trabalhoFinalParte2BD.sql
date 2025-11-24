@@ -99,7 +99,8 @@ ALTER TABLE FUNCIONARIO ADD CONSTRAINT FK4FUNC FOREIGN KEY (idDpto) REFERENCES D
 # --------------------- Cria uma tabela para a entidade Produto ---------------------
 CREATE TABLE PRODUTO(
 	idProduto INT AUTO_INCREMENT NOT NULL,
-    precoProduto NUMERIC(10,2) NOT NULL,
+    precoProdutoVenda NUMERIC(10,2) NOT NULL, -- preço de revenda do ecommerce
+    precoProdutoCompra NUMERIC(10,2) NOT NULL, -- preço de fábrica
     quantEstoque INT CHECK (quantEstoque >= 0),
     descProduto VARCHAR(100) NOT NULL,
     idCategoria INT NOT NULL,
@@ -173,6 +174,7 @@ CREATE TABLE FORNECIDO(
     dataEntrega DATE,
     CNPJ VARCHAR(18),
     idProduto INT,
+	precoTotalFornecimento NUMERIC(10,2),
     
     #Definição das chaves
     PRIMARY KEY (CNPJ,idProduto,dataEntrega),
@@ -221,7 +223,7 @@ DELIMITER //
 CREATE TRIGGER atualizapreçoCompra AFTER INSERT ON Item 
 FOR EACH ROW BEGIN 
     UPDATE Compra 
-    SET precoTotal = precoTotal + (select precoProduto from Produto where idProduto = new.idProduto)
+    SET precoTotal = precoTotal + (select precoProdutoVenda from Produto where idProduto = new.idProduto)
     WHERE idCarrinho = NEW.idCarrinho;
  END //
 
@@ -237,6 +239,28 @@ FOR EACH ROW BEGIN
     WHERE  idCompra = NEW.idCompra;
 
  END //
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER CalculaPrecoTotalFornecido
+BEFORE INSERT ON FORNECIDO
+FOR EACH ROW
+BEGIN
+    DECLARE precoCompra DECIMAL(10,2);
+
+    -- Buscar o preço do produto
+    SELECT precoProdutoCompra
+    INTO precoCompra
+    FROM PRODUTO
+    WHERE idProduto = NEW.idProduto;
+
+    -- Calcular o total sem UPDATE
+    SET NEW.precoTotalFornecimento = NEW.qtdForn * precoCompra;
+END //
+
+DELIMITER ;
 
 DELIMITER ;
 

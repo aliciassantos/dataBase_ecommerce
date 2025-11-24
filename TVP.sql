@@ -102,19 +102,11 @@ SELECT
     NF.numeroNF) as ID_NF,
     NF.FormaDePagamento,
     NF.dataEmissao AS Data_Emissao_NF,
-    NF.Status AS Status_Pagamento, -- (Ex: 'Pago', 'Pendente', 'Cancelado')
-    
-    -- Dados do Cliente
-    P_Cliente.Nome AS Nome_Cliente,
-    P_Cliente.CPF AS CPF_Cliente
+    NF.Status AS Status_Pagamento-- (Ex: 'Pago', 'Pendente', 'Cancelado')
 FROM
     COMPRA Co
 JOIN
     CARRINHO Ca ON Co.idCarrinho = Ca.idCarrinho
-JOIN
-    CLIENTE C ON Ca.CPFCliente = C.cpfCliente
-JOIN
-    PESSOA P_Cliente ON C.cpfCliente = P_Cliente.CPF
 LEFT JOIN
     NotaFiscal NF ON Co.idCompra = NF.idCompra;
 
@@ -135,7 +127,7 @@ DECLARE VprecoTotal DECIMAL (10, 2) DEFAULT 0;
 DECLARE Vstatus VARCHAR(20) DEFAULT  'Processamento';
 DECLARE VdataDaCompra DATE DEFAULT CURDATE();
 
-    SELECT SUM(p.precoProduto * c.quantProduto) INTO VprecoTotal
+    SELECT SUM(p.precoProdutoVenda * c.quantProduto) INTO VprecoTotal
     FROM ITEM it
     INNER JOIN CARRINHO c 
 	ON it.idCarrinho = c.idCarrinho
@@ -156,6 +148,7 @@ DELIMITER ;
 DELIMITER //
 CREATE PROCEDURE RegistraNovoProduto (
     IN pPreco DECIMAL(10, 2),
+    IN pCompra DECIMAL(10,2),
     IN pDescricao VARCHAR(100),
     IN pCategoriaID INT
 )
@@ -165,8 +158,8 @@ BEGIN
         SIGNAL SQLSTATE '45000'
         SET MESSAGE_TEXT = 'A descrição do produto não pode ser vazia.';
     ELSE
-        INSERT INTO PRODUTO (precoProduto,quantEstoque,descProduto,idCategoria)
-        VALUES (pPreco,0,pDescricao,pCategoriaID);
+        INSERT INTO PRODUTO (precoProdutoVenda,precoProdutoCompra,quantEstoque,descProduto,idCategoria)
+        VALUES (pPreco,pCompra,0,pDescricao,pCategoriaID);
         SET vNovoID = LAST_INSERT_ID();
         
         SELECT 
@@ -178,7 +171,7 @@ END //
 
 DELIMITER ;
 
-CALL RegistraNovoProduto (2599.90, 'Smartphone Redmi 13 PRO, 128GB, Azul Celeste', 1);
+CALL RegistraNovoProduto (2599.90,2220, 'Smartphone Redmi 13 PRO, 128GB, Azul Celeste', 1);
 CALL RegistrarCompra(2);
 CALL RegistrarCompra(3);
 

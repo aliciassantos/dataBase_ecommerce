@@ -92,7 +92,7 @@ WHERE fcedo.CNPJ NOT IN (
 	SELECT fcido.CNPJ
     FROM FORNECIDO fcido INNER JOIN PRODUTO p 
     ON fcido.idProduto = p.idProduto
-	WHERE p.precoProduto > 100
+	WHERE p.precoProdutoVenda > 100
 );
 
 # Lista a classe e o nome dos clientes cujo valor médio da quantidade média de produtos em seus carrinhos é maior do que a média
