@@ -72,7 +72,7 @@ LEFT JOIN #caso o gerente for null mostra mesmo assim
 
 
 #View 3 - Departamento(Financeiro) - Funcionarios
-CREATE VIEW View_Financeiro_FolhaPagamento AS
+CREATE VIEW Financeiro_FolhaPagamento AS
 SELECT
 #Funcionário
     P.Nome AS Nome_Funcionario,
@@ -90,7 +90,7 @@ LEFT JOIN
 
 #View 4 - Departamento(Financeiro) - ComprasCliente
 
-CREATE VIEW View_Financeiro_Faturamento AS
+CREATE VIEW Financeiro_Faturamento AS
 SELECT
 #Compra
     Co.idCompra AS ID_Compra,
@@ -112,7 +112,7 @@ LEFT JOIN
     NotaFiscal NF ON Co.idCompra = NF.idCompra;
     
 #View 5 - Departamento(Financeiro) - ComprasEmpresa
-CREATE VIEW View_Financeiro_gastoCompras AS
+CREATE VIEW Financeiro_gastoCompras AS
 SELECT 
 
     f.dataEntrega,
@@ -129,9 +129,9 @@ JOIN PRODUTO p ON p.idProduto = f.idProduto;
 
 select * from InformacoesOperacionais;
 select * from InformacoesInternas;
-select * from View_Financeiro_Faturamento;
-select * from View_Financeiro_FolhaPagamento;
-select * from View_Financeiro_gastoCompras;
+select * from Financeiro_Faturamento;
+select * from Financeiro_FolhaPagamento;
+select * from Financeiro_gastoCompras;
 
 
 #---------------------------------------------------------PROCEDURES---------------------------------------------------
