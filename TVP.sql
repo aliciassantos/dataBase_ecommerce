@@ -74,7 +74,7 @@ LEFT JOIN #caso o gerente for null mostra mesmo assim
 #View 3 - Departamento(Financeiro) - Funcionarios
 CREATE VIEW View_Financeiro_FolhaPagamento AS
 SELECT
-    -- Dados do Funcionário
+#Funcionário
     P.Nome AS Nome_Funcionario,
     P.CPF AS CPF_Funcionario,
     F.Salario AS Salario,
@@ -88,32 +88,51 @@ LEFT JOIN
     PESSOA Gerente ON F.CPFGerente = Gerente.CPF;
 
 
-#View 4 - Departamento(Financeiro) - Compras
+#View 4 - Departamento(Financeiro) - ComprasCliente
 
 CREATE VIEW View_Financeiro_Faturamento AS
 SELECT
+#Compra
     Co.idCompra AS ID_Compra,
     Co.dataCompra AS Data_Compra,
     Co.precoTotal AS Valor_Total_Compra,
     Co.status AS Status_Entrega_Pedido,
 
-    -- Dados do Pagamento (Nota Fiscal)
+#Pagamento (Nota Fiscal)
     concat(NF.serieNF ,'-', 
     NF.numeroNF) as ID_NF,
     NF.FormaDePagamento,
     NF.dataEmissao AS Data_Emissao_NF,
-    NF.Status AS Status_Pagamento-- (Ex: 'Pago', 'Pendente', 'Cancelado')
+    NF.Status AS Status_Pagamento
 FROM
     COMPRA Co
 JOIN
     CARRINHO Ca ON Co.idCarrinho = Ca.idCarrinho
 LEFT JOIN
     NotaFiscal NF ON Co.idCompra = NF.idCompra;
+    
+#View 5 - Departamento(Financeiro) - ComprasEmpresa
+CREATE VIEW View_Financeiro_gastoCompras AS
+SELECT 
+
+    f.dataEntrega,
+    f.CNPJ AS fornecedor,
+    p.idProduto,
+    p.descProduto,
+    f.qtdForn AS quantidade,
+    f.precoTotalFornecimento AS valorTotal
+
+FROM FORNECIDO f
+JOIN PRODUTO p ON p.idProduto = f.idProduto;
+
+
 
 select * from InformacoesOperacionais;
 select * from InformacoesInternas;
 select * from View_Financeiro_Faturamento;
 select * from View_Financeiro_FolhaPagamento;
+select * from View_Financeiro_gastoCompras;
+
 
 #---------------------------------------------------------PROCEDURES---------------------------------------------------
 #A procedure cria um novo registro na tabela COMPRA, insere seus valores na tabela e calcula o valor total
@@ -121,6 +140,7 @@ DELIMITER //
 CREATE PROCEDURE RegistrarCompra (
     IN VidCarrinho INT 
 )
+
 
 BEGIN
 DECLARE VprecoTotal DECIMAL (10, 2) DEFAULT 0;
@@ -171,9 +191,9 @@ END //
 
 DELIMITER ;
 
-CALL RegistraNovoProduto (2599.90,2220, 'Smartphone Redmi 13 PRO, 128GB, Azul Celeste', 1);
-CALL RegistrarCompra(2);
-CALL RegistrarCompra(3);
+#CALL RegistraNovoProduto (2599.90,2220, 'Smartphone Redmi 13 PRO, 128GB, Azul Celeste', 1);
+#CALL RegistrarCompra(2);
+#CALL RegistrarCompra(3);
 
 
 

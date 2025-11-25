@@ -210,7 +210,7 @@ DELIMITER ;
 
 #TRIGGER PARA ATUALIZAR A QUANTIDADE DE PRODUTO DO CARRINHO QUANDO FOR ADICIONADO UM NOVO ITEM certo
 DELIMITER //
-CREATE TRIGGER atualizaQuantidaadeproduto AFTER INSERT ON Item 
+CREATE TRIGGER atualizaQuantidadeProduto AFTER INSERT ON Item 
 FOR EACH ROW BEGIN 
     UPDATE Carrinho 
     SET quantProduto = quantProduto +1
@@ -220,7 +220,7 @@ DELIMITER ;
 
 #TRIGGER PARA ATUALIZAR O PREÇO TOTAL DA COMPRA DENTRO DA TABELA COMPRA certo
 DELIMITER //
-CREATE TRIGGER atualizapreçoCompra AFTER INSERT ON Item 
+CREATE TRIGGER atualizaPreçoCompra AFTER INSERT ON Item 
 FOR EACH ROW BEGIN 
     UPDATE Compra 
     SET precoTotal = precoTotal + (select precoProdutoVenda from Produto where idProduto = new.idProduto)
@@ -231,9 +231,9 @@ DELIMITER ;
 
 #TRIGGER QUE ATUALIZA O PREÇO CADASTRADO NA NOTA FISCAL
 DELIMITER //
-CREATE TRIGGER atualizapreçoNota AFTER UPDATE ON Compra
+CREATE TRIGGER atualizaPreçoNota AFTER UPDATE ON Compra
 FOR EACH ROW BEGIN 
-    -- Após o Update, o preço será atualizado, recebendo o novo preço
+
     UPDATE NOTAFISCAL
     SET  valorTotalCompra  = new.precoTotal
     WHERE  idCompra = NEW.idCompra;
@@ -244,25 +244,23 @@ DELIMITER ;
 
 DELIMITER //
 
-CREATE TRIGGER CalculaPrecoTotalFornecido
-BEFORE INSERT ON FORNECIDO
+#TRIGGER PARA ATUALIZAR O PREÇO TOTAL DA LEVA DE FORNECIMENTO.
+CREATE TRIGGER calculaPrecoTotalFornecido BEFORE INSERT ON FORNECIDO
 FOR EACH ROW
 BEGIN
     DECLARE precoCompra DECIMAL(10,2);
-
-    -- Buscar o preço do produto
+    
     SELECT precoProdutoCompra
     INTO precoCompra
     FROM PRODUTO
     WHERE idProduto = NEW.idProduto;
 
-    -- Calcular o total sem UPDATE
     SET NEW.precoTotalFornecimento = NEW.qtdForn * precoCompra;
 END //
 
 DELIMITER ;
 
-DELIMITER ;
+
 
 
 

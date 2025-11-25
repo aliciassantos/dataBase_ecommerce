@@ -11,6 +11,8 @@ SELECT * FROM DEPARTAMENTO;
 SELECT * FROM FUNCIONARIO;
 SELECT * FROM PESSOA;
 SELECT * FROM ITEM;
+#Mostrar todas as triggers criadas:
+SELECT * FROM information_schema.triggers WHERE trigger_schema = 'ecommercelilienana';
 #50 45 77 62 67
 
 #------------------------------------- CONSULTAS DE UTILIDADE ENVOLVENDO O AUTORRELACIONAMENTO -------------------------------------
