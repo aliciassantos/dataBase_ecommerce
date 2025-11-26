@@ -3,8 +3,9 @@
 
 #drop view InformacoesOperacionais;
 #drop view InformacoesInternas;
-#drop view View_Financeiro_Faturamento;
-#drop view View_Financeiro_FolhaPagamento;
+#drop view Financeiro_Faturamento;
+#drop view Financeiro_FolhaPagamento;
+#drop view Financeiro_gastoCompras;
 
 CREATE VIEW InformacoesOperacionais AS
 SELECT DISTINCT
@@ -164,12 +165,15 @@ DECLARE VdataDaCompra DATE DEFAULT CURDATE();
 END //
 DELIMITER ;
 
+
+#drop procedure registraNovoProduto;
 #A procedure cria um novo registro na tabela PRODUTO
 DELIMITER //
 CREATE PROCEDURE RegistraNovoProduto (
     IN pPreco DECIMAL(10, 2),
     IN pCompra DECIMAL(10,2),
     IN pDescricao VARCHAR(100),
+    IN pQtdeEstoque INT,
     IN pCategoriaID INT
 )
 BEGIN
@@ -179,7 +183,7 @@ BEGIN
         SET MESSAGE_TEXT = 'A descrição do produto não pode ser vazia.';
     ELSE
         INSERT INTO PRODUTO (precoProdutoVenda,precoProdutoCompra,quantEstoque,descProduto,idCategoria)
-        VALUES (pPreco,pCompra,0,pDescricao,pCategoriaID);
+        VALUES (pPreco,pCompra,pQtdeEstoque,pDescricao,pCategoriaID);
         SET vNovoID = LAST_INSERT_ID();
         
         SELECT 
@@ -191,7 +195,7 @@ END //
 
 DELIMITER ;
 
-#CALL RegistraNovoProduto (2599.90,2220, 'Smartphone Redmi 13 PRO, 128GB, Azul Celeste', 1);
+#CALL RegistraNovoProduto (39.99, 25.90, 'Garrafa Térmica Grande', 16, 6);
 #CALL RegistrarCompra(2);
 #CALL RegistrarCompra(3);
 

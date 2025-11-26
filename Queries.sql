@@ -16,7 +16,7 @@ SELECT * FROM information_schema.triggers WHERE trigger_schema = 'ecommercelilie
 #50 45 77 62 67
 
 #------------------------------------- CONSULTAS DE UTILIDADE ENVOLVENDO O AUTORRELACIONAMENTO -------------------------------------
-# Verifica quais funcionários são gerentes de um departamento 
+# Verifica quais funcionários são gerentes 
 SELECT DISTINCT g.CPFfuncionario, g.idDpto, p.Nome
 FROM funcionario g
 INNER JOIN funcionario f ON (f.cpfgerente = g.cpfFuncionario)
@@ -99,16 +99,12 @@ WHERE fcedo.CNPJ NOT IN (
 
 # Lista a classe e o nome dos clientes cujo valor médio da quantidade média de produtos em seus carrinhos é maior do que a média
 # da quantidade de produtos de todos os carrinhos 
-SELECT * FROM CLIENTE;
-SELECT * FROM CARRINHO;
-SELECT * FROM ITEM;
 
 SELECT p.nome, cl.classeCliente
 FROM CLIENTE cl INNER JOIN CARRINHO ca 
 ON cl.cpfCliente = ca.CPFCliente
 INNER JOIN PESSOA p
 ON p.CPF = cl.cpfCliente
-
 GROUP BY cl.classeCliente, p.nome
 HAVING AVG(quantProduto) > (
 	SELECT AVG(quantProduto)
